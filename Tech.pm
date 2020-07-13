@@ -34,7 +34,7 @@ sub move {
 
 sub search {
 	my( $tech ) =  @_;
-	return $tech->{ 'x' }, $tech->{ 'y' }; 
+	return $tech->@{ "x", "y" }; 
 }
 
 
@@ -43,7 +43,7 @@ sub fire {
 
 	$tech->ammo_indicator()   or return;
 	
-	$tech->ammo_consumption();
+	$tech->consume_ammo();
 
 	my $success;
 	if( $x == $tech2->{ x }  &&  $y == $tech2->{ y } ) {
@@ -87,7 +87,7 @@ sub fire_and_print {
 
 sub position {
 	my( $tech ) =  @_;
-	return $tech->{ 'x' }, $tech->{ 'y' };
+	return $tech->@{ "x", "y" };
 }
 
 
@@ -98,7 +98,7 @@ sub ammo_indicator {
 
 
 
-sub ammo_consumption {
+sub consume_ammo {
 	my( $tech ) =  @_;
 
 	$tech->{ ammo }--;
